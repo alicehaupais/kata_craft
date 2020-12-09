@@ -214,4 +214,99 @@ public class CLITest {
                 "--------------------------------------------------------------------------------\n" +
                 "\n");
     }
+
+    @Test
+    public void should_command_2_products() {
+        // Given
+        String[] args = new String[0];
+        String myString = "order\nwire\n70\nadd\nperpend\n1\nsave\nquit\n";
+        InputStream is = new ByteArrayInputStream(myString.getBytes());
+
+        System.setIn(is);
+
+        // When
+        CLI.main(args);
+
+        content = buffer.toString();
+
+        // Then
+        assertThat(content).isEqualToNormalizingNewlines("\n" +
+                "--------------------------------------------------------------------------------\n" +
+                "          Welcome to Efficent Command System 2.0\n" +
+                "--------------------------------------------------------------------------------\n" +
+                "\n" +
+                "Enter command : \n" +
+                "--------------------------------------------------------------------------------\n" +
+                "          Order Menu\n" +
+                "--------------------------------------------------------------------------------\n" +
+                "\n" +
+                "New order created.\n" +
+                "Add new elements to your order\n" +
+                "\n" +
+                "What do you want to add to order: \n" +
+                "How many copper wire meters do you need ?\n" +
+                "Enter quantity : \n" +
+                "Enter order command : \n" +
+                "What do you want to add to order: \n" +
+                "How many perpends palets do you need ?\n" +
+                "Enter quantity : \n" +
+                "Enter order command : Order Saved\n" +
+                "\n" +
+                "Quit Order Menu\n" +
+                "\n" +
+                "Enter command : \n" +
+                "--------------------------------------------------------------------------------\n" +
+                "          System stopped\n" +
+                "--------------------------------------------------------------------------------\n" +
+                "\n");
+    }
+
+    @Test
+    public void should_show_command() {
+        // Given
+        String[] args = new String[0];
+        String myString = "order\nwire\n70\nshow\nsave\nquit\n";
+        InputStream is = new ByteArrayInputStream(myString.getBytes());
+
+        System.setIn(is);
+
+        // When
+        CLI.main(args);
+
+        content = buffer.toString();
+
+        // Then
+        assertThat(content).isEqualToNormalizingNewlines("\n" +
+                "--------------------------------------------------------------------------------\n" +
+                "          Welcome to Efficent Command System 2.0\n" +
+                "--------------------------------------------------------------------------------\n" +
+                "\n" +
+                "Enter command : \n" +
+                "--------------------------------------------------------------------------------\n" +
+                "          Order Menu\n" +
+                "--------------------------------------------------------------------------------\n" +
+                "\n" +
+                "New order created.\n" +
+                "Add new elements to your order\n" +
+                "\n" +
+                "What do you want to add to order: \n" +
+                "How many copper wire meters do you need ?\n" +
+                "Enter quantity : \n" +
+                "Enter order command : \n" +
+                "The order contains:\n" +
+                "\n" +
+                " - 0 perpend palets\n" +
+                " - 1 copper wire coils (50m)\n" +
+                " - 20 copper wire meters\n" +
+                "\n" +
+                "Enter order command : Order Saved\n" +
+                "\n" +
+                "Quit Order Menu\n" +
+                "\n" +
+                "Enter command : \n" +
+                "--------------------------------------------------------------------------------\n" +
+                "          System stopped\n" +
+                "--------------------------------------------------------------------------------\n" +
+                "\n");
+    }
 }
