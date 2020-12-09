@@ -130,4 +130,88 @@ public class CLITest {
                 "--------------------------------------------------------------------------------\n" +
                 "\n");
     }
+
+    @Test
+    public void should_command_1_perpend() {
+        // Given
+        String[] args = new String[0];
+        String myString = "order\nperpend\n1\nsave\nquit\n";
+        InputStream is = new ByteArrayInputStream(myString.getBytes());
+
+        System.setIn(is);
+
+        // When
+        CLI.main(args);
+
+        content = buffer.toString();
+
+        // Then
+        assertThat(content).isEqualToNormalizingNewlines("\n" +
+                        "--------------------------------------------------------------------------------\n" +
+                        "          Welcome to Efficent Command System 2.0\n" +
+                        "--------------------------------------------------------------------------------\n" +
+                        "\n" +
+                        "Enter command : \n" +
+                        "--------------------------------------------------------------------------------\n" +
+                        "          Order Menu\n" +
+                        "--------------------------------------------------------------------------------\n" +
+                        "\n" +
+                        "New order created.\n" +
+                        "Add new elements to your order\n" +
+                        "\n" +
+                        "What do you want to add to order: \n" +
+                        "How many perpends palets do you need ?\n" +
+                        "Enter quantity : \n" +
+                        "Enter order command : Order Saved\n" +
+                        "\n" +
+                        "Quit Order Menu\n" +
+                        "\n" +
+                        "Enter command : \n" +
+                        "--------------------------------------------------------------------------------\n" +
+                        "          System stopped\n" +
+                        "--------------------------------------------------------------------------------\n" +
+                        "\n");
+    }
+
+    @Test
+    public void should_command_70_wire() {
+        // Given
+        String[] args = new String[0];
+        String myString = "order\nwire\n70\nsave\nquit\n";
+        InputStream is = new ByteArrayInputStream(myString.getBytes());
+
+        System.setIn(is);
+
+        // When
+        CLI.main(args);
+
+        content = buffer.toString();
+
+        // Then
+        assertThat(content).isEqualToNormalizingNewlines("\n" +
+                "--------------------------------------------------------------------------------\n" +
+                "          Welcome to Efficent Command System 2.0\n" +
+                "--------------------------------------------------------------------------------\n" +
+                "\n" +
+                "Enter command : \n" +
+                "--------------------------------------------------------------------------------\n" +
+                "          Order Menu\n" +
+                "--------------------------------------------------------------------------------\n" +
+                "\n" +
+                "New order created.\n" +
+                "Add new elements to your order\n" +
+                "\n" +
+                "What do you want to add to order: \n" +
+                "How many copper wire meters do you need ?\n" +
+                "Enter quantity : \n" +
+                "Enter order command : Order Saved\n" +
+                "\n" +
+                "Quit Order Menu\n" +
+                "\n" +
+                "Enter command : \n" +
+                "--------------------------------------------------------------------------------\n" +
+                "          System stopped\n" +
+                "--------------------------------------------------------------------------------\n" +
+                "\n");
+    }
 }
